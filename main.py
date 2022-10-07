@@ -15,7 +15,7 @@ def display_score():
     screen.blit(trophy_surface, trophy_rect)
 
     high_score_surface = text_font.render(f'{high_score}', False, (230, 174, 71))
-    high_score_rect = high_score_surface.get_rect(center = (70, 35))
+    high_score_rect = high_score_surface.get_rect(midleft = (50, 35))
     screen.blit(high_score_surface, high_score_rect)
 
     return current_time
