@@ -9,10 +9,14 @@ def display_score():
     score_rect = score_surface.get_rect(center = (400, 50))
     screen.blit(score_surface, score_rect)
     
-    # high_score_surface = pygame.image.load('graphics/trophy.png').convert_alpha()
-    # high_score_surface = high_score_surface.
-    # high_score_rect = high_score_surface.get_rect(center = (400, 80))
-    # screen.blit(high_score_surface, high_score_rect)
+    trophy_surface = pygame.image.load('graphics/trophy.png').convert_alpha()
+    trophy_surface = pygame.transform.scale(trophy_surface, (20, 30))
+    trophy_rect = trophy_surface.get_rect(center = (30, 30))
+    screen.blit(trophy_surface, trophy_rect)
+
+    high_score_surface = text_font.render(f'{high_score}', False, (230, 174, 71))
+    high_score_rect = high_score_surface.get_rect(center = (70, 35))
+    screen.blit(high_score_surface, high_score_rect)
 
     return current_time
 
@@ -150,7 +154,7 @@ while True:
         screen.blit(sky_surface, (0,0))
         screen.blit(ground_surface, (0,300))
         score = display_score()
-        if score > high_score: high_score = score
+        
 
         # Player
         player_gravity += 1
@@ -176,6 +180,7 @@ while True:
         score_message = text_font.render(f'Your score was: {score}', False, (111, 196, 169))
         score_message_rect = score_message.get_rect(center = (400, 340))
         screen.blit(game_name, game_name_rect)
+        if score > high_score: high_score = score
 
         if score == 0: screen.blit(game_message, game_message_rect)
         else: screen.blit(score_message, score_message_rect)
