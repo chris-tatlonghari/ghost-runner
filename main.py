@@ -1,4 +1,6 @@
 import pygame
+from player import Player
+from obstacle import Obstacle
 from sys import exit
 from random import randint
 
@@ -72,7 +74,6 @@ def fly_animation():
 pygame.init()
 screen = pygame.display.set_mode((800, 400)) #(w,h)
 pygame.display.set_caption('Ghost Runner')
-# pygame.display.set_icon()
 clock = pygame.time.Clock()
 text_font = pygame.font.Font('font/Pixeltype.ttf', 50)
 game_active = False
@@ -118,6 +119,11 @@ game_name_rect = game_name.get_rect(center = (400, 80))
 game_message = text_font.render('Press enter to run', False, (111, 196, 169))
 game_message_rect = game_message.get_rect(center = (400, 340))
 
+# Icon
+icon_image = pygame.image.load('graphics/icon.png')
+pygame.display.set_icon(icon_image)
+
+
 # Timer
 obstacle_timer = pygame.USEREVENT + 1
 pygame.time.set_timer(obstacle_timer, 1500)
@@ -133,8 +139,7 @@ while True:
 
         if game_active:
             if event.type == pygame.MOUSEBUTTONDOWN and player_rect.bottom >= 300:
-                if player_rect.collidepoint(event.pos): 
-                    player_gravity = -20
+                player_gravity = -20
             if event.type == pygame.KEYDOWN and player_rect.bottom >= 300:
                 if event.key == pygame.K_SPACE:
                     player_gravity = -20
